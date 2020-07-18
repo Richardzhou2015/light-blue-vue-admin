@@ -3,14 +3,14 @@
     <div class="map" ref="map">
 
     </div>
-    <div class="stats">
+<!--     <div class="stats">
       <h6 class="mt-1">GEO-LOCATIONS</h6>
       <p class="h3 m-0">
       <span class="mr-xs fw-normal"><AnimatedNumber value="1656843"
                                                     v-bind="animateNumberOptions"></AnimatedNumber></span>
         <i class="fa fa-map-marker"/>
       </p>
-    </div>
+    </div> -->
   </div>
 
 </template>
@@ -19,7 +19,7 @@
 import AnimatedNumber from "animated-number-vue";
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4maps from "@amcharts/amcharts4/maps";
-import am4geodata_usaHigh from "@amcharts/amcharts4-geodata/usaHigh";
+import am4geodata_usaHigh from "@amcharts/amcharts4-geodata/chinaHigh";
 
 import cities from './mock';
 
@@ -46,13 +46,14 @@ export default {
   mounted() {
     let map = am4core.create(this.$refs.map, am4maps.MapChart);
     map.geodata = am4geodata_usaHigh;
-    map.projection = new am4maps.projections.AlbersUsa();
+   // map.projection = new am4maps.projections.AlbersUsa();
+    map.projection = new am4maps.projections.Miller();
     map.chartContainer.wheelable = false;
     map.seriesContainer.draggable = false;
     map.seriesContainer.resizable = false;
     let polygonSeries = map.series.push(new am4maps.MapPolygonSeries());
     polygonSeries.useGeodata = true;
-    map.homeZoomLevel = 1.2;
+    map.homeZoomLevel = 1.0;
 
     map.zoomControl = new am4maps.ZoomControl();
     map.zoomControl.align = 'left';

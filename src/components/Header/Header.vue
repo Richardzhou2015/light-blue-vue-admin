@@ -1,28 +1,37 @@
 <template>
+<<<<<<< Updated upstream
   <b-navbar toggleable="md" class="app-header d-print-none">
     <b-navbar-nav class="navbar-nav-mobile ml-auto">
         <b-nav-text class="mr-3">
           <b-alert class="header-alert animate__animated animate__bounceIn animate__delay-2s" dismissible v-model="showNavbarAlert">
+=======
+  <b-navbar class="app-header">
+    <!-- <b-navbar-nav class="navbar-nav-mobile ml-auto"> -->
+          <b-navbar-nav class="navbar-nav-mobile">
+        <!-- <b-nav-text class="mr-3">
+          <b-alert class="header-alert animated bounceIn delay-2s" dismissible v-model="showNavbarAlert">
+>>>>>>> Stashed changes
             <i class="fa fa-info-circle mr-1"></i> Check out Light Blue Settings on the right!
           </b-alert>
-        </b-nav-text>
-        <b-nav-form class="d-sm-down-none mr-3">
+        </b-nav-text> -->
+        <!-- <b-nav-form class="d-sm-down-none mr-3">
           <b-input-group class="input-group-transparent">
             <b-input-group-text slot="prepend"><i class="la la-search"></i></b-input-group-text>
             <b-input class="input-transparent" id="search-input" placeholder="Search Dashboard" />
           </b-input-group>
-        </b-nav-form>
-        <b-nav-item-dropdown right menu-class="py-0">
+        </b-nav-form> -->
+        <b-nav-item-dropdown left menu-class="py-0">
           <template slot="button-content">
-            <span class="avatar rounded-circle thumb-sm float-left mr-2">
+            <!-- <span class="avatar rounded-circle thumb-sm float-left mr-2">
               <img class="rounded-circle" src="../../assets/people/a5.jpg" alt="..." />
-            </span>
-            <span class="small">Philip Smith</span>
+            </span> -->
+             <i class="la la-fire px-2" style="color:orange" />
+            <span>当前告警</span>
             <span class="mx-2 circle bg-primary text-white fs-sm fw-bold">13</span>
           </template>
           <notifications />
         </b-nav-item-dropdown>
-        <b-nav-item-dropdown class="d-md-down-none" no-caret right menu-class="dropdown-menu-messages">
+        <b-nav-item-dropdown class="d-md-down-none" no-caret left menu-class="dropdown-menu-messages">
           <template slot="button-content">
             <i class="la la-comment px-2" />
           </template>
@@ -31,7 +40,7 @@
               <img class="rounded-circle" src="../../assets/people/a1.jpg" alt="..." />
             </span>
             <div>
-              <h6>Jane <span class="fw-semi-bold">Hew</span></h6>
+              <h6>Jane <span class="fw-semi-bold">He</span></h6>
               <span class="fs-sm text-muted fw-thin">Hey, John! How is it going? ...</span>
             </div>
           </b-dropdown-item>
@@ -104,8 +113,26 @@
         <b-nav-item class="d-md-down-none" @click="logout">
           <i class="la la-power-off px-2" />
         </b-nav-item>
-        <b-nav-item class="d-md-none" @click="switchSidebarMethod" >
-          <i class="la la-navicon px-2" />
+        <b-nav-item  @click="switchSidebarMethod" >
+         <router-link to="/app/dashboard"> <span class="header_button">网络态势</span></router-link>
+        </b-nav-item>
+        <b-nav-item>
+         <router-link to="/app/tables"> <span class="header_button">综合资源</span></router-link>
+        </b-nav-item>
+        <b-nav-item>
+         <router-link to="/app/components/charts"><span class="header_button">实时监测</span></router-link>
+        </b-nav-item>
+         <b-nav-item>
+         <router-link to="/app/dashboard_blk"> <span class="header_button">智能运维</span></router-link>
+        </b-nav-item>
+                 <b-nav-item>
+         <router-link to="/app/components/icons"> <span class="header_button">性能分析</span></router-link>
+        </b-nav-item>
+                 <b-nav-item>
+         <router-link to="/app/dashboard"> <span class="header_button">安全评估</span></router-link>
+        </b-nav-item>
+                 <b-nav-item>
+         <router-link to="/app/components/Acharts"> <span class="header_button">安全策略</span></router-link>
         </b-nav-item>
       </b-navbar-nav>
   </b-navbar>

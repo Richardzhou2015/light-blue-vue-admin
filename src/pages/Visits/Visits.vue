@@ -1,150 +1,51 @@
 <template>
   <div class="visits-page">
-    <h1 class="page-title">Dashboard &nbsp;
-      <small>
-        <small>The Lucky One</small>
-      </small>
-    </h1>
+    <h2 class="page-title" style="text-align:center">
+      网络态势总览
+      <!--       <small>
+        <small>整体态势一览图</small>
+      </small>-->
+    </h2>
     <b-row>
-      <b-col lg="7">
-        <Widget class="bg-transparent">
+      <b-col lg="3" xs="12">
+        <Widget
+          title="<h5>Highcharts <span class='fw-semi-bold'>Live Chart</span></h5>"
+          close
+          collapse
+          customHeader
+        >
+          <highcharts :options="ld" ref="highchart"></highcharts>
+        </Widget>
+        <Widget
+          title="<h5>Highcharts <span class='fw-semi-bold'>Live Chart</span></h5>"
+          close
+          collapse
+          customHeader
+        >
+          <highcharts :options="ld" ref="highchart"></highcharts>
+        </Widget>
+      </b-col>
+      <b-col lg="6">
+        <Widget
+          class="bg-transparent"
+          title="<h6><span class='badge badge-danger'>全区域</span> 网络资源及运行态势地图</h6>"
+          refresh
+          close
+          customHeader
+        >
           <Map />
         </Widget>
       </b-col>
-      <b-col lg="4" offset-lg="1">
-        <Widget
-          class="bg-transparent"
-          title="<h5>Map<span class='fw-semi-bold'>&nbsp;Statistics</span></h5>"
-          settings refresh close customHeader
-        >
-          <p>Status: <strong>Live</strong></p>
-          <p>
-            <span class="circle bg-primary text-white"><i class="la la-map-marker" /></span> &nbsp;
-            146 Countries, 2759 Cities
-          </p>
-          <div class="row progress-stats">
-            <div class="col-md-9 col-12">
-              <h6 class="name">Foreign Visits</h6>
-              <p class="description deemphasize mb-xs">Some Cool Text</p>
-              <b-progress variant="primary" :value="60" :max="100" class="progress-xs" />
-            </div>
-            <div class="col-md-3 col-12 text-center">
-              <span class="status rounded rounded-lg bg-widget">
-                <span><AnimatedNumber :value="75" v-bind="animateNumberOptions"></AnimatedNumber>%</span>
-              </span>
-            </div>
-          </div>
-          <div class="row progress-stats">
-            <div class="col-md-9 col-12">
-              <h6 class="name">Local Visits</h6>
-              <p class="description deemphasize mb-xs">P. to C. Conversion</p>
-              <b-progress variant="danger" :value="39" :max="100" class="progress-xs" />
-            </div>
-            <div class="col-md-3 col-12 text-center">
-              <span class="status rounded rounded-lg bg-widget">
-                <span><AnimatedNumber :value="84" v-bind="animateNumberOptions"></AnimatedNumber>%</span>
-              </span>
-            </div>
-          </div>
-          <div class="row progress-stats">
-            <div class="col-md-9 col-12">
-              <h6 class="name">Sound Frequencies</h6>
-              <p class="description deemphasize mb-xs">Average Bitrate</p>
-              <b-progress variant="success" :value="80" :max="100" class="progress-xs" />
-            </div>
-            <div class="col-md-3 col-12 text-center">
-              <span class="status rounded rounded-lg bg-widget">
-                <span><AnimatedNumber :value="92" v-bind="animateNumberOptions"></AnimatedNumber>%</span>
-              </span>
-            </div>
-          </div>
-          <h6 class="fw-semi-bold mt">Map Distributions</h6>
-          <p>Tracking: <strong>Active</strong></p>
-          <p>
-            <span class="circle bg-primary text-white"><i class="la la-cog" /></span>
-            &nbsp; 391 elements installed, 84 sets
-          </p>
-          <b-input-group class="mt">
-            <b-form-input placeholder="Search..." />
-            <b-input-group-append>
-              <b-btn variant="default">
-                <i class="la la-search" />
-              </b-btn>
-            </b-input-group-append>
-          </b-input-group>
+      <b-col lg="3" xs="12">
+        <Widget>
+          <highcharts :options="cd.highcharts.piedata" ref="highchart"></highcharts>
+        </Widget>
+        <Widget>
+          <highcharts :options="cd.highcharts.piedata" ref="highchart"></highcharts>
         </Widget>
       </b-col>
-    </b-row>
-    <b-row>
-      <b-col lg="4" xs="12">
-        <Widget
-          title="<h6> USERBASE GROWTH </h6>"
-          close settings customHeader
-        >
-          <div class="stats-row">
-            <div class="stat-item">
-              <h6 class="name">Overall Growth</h6>
-              <p class="value">76.38%</p>
-            </div>
-            <div class="stat-item">
-              <h6 class="name">Montly</h6>
-              <p class="value">10.38%</p>
-            </div>
-            <div class="stat-item">
-              <h6 class="name">24h</h6>
-              <p class="value">3.38%</p>
-            </div>
-          </div>
-          <b-progress variant="success" :value="60"
-            :max="100" class="progress-xs" />
-          <p>
-            <small>
-              <span class="circle bg-primary text-white">
-                <i class="la la-angle-up" />
-              </span>
-            </small>
-            <span class="fw-semi-bold">&nbsp;17% higher</span>
-            &nbsp;than last month
-          </p>
-        </Widget>
-      </b-col>
-      <b-col lg="4" xs="12">
-        <Widget
-          title="<h6> TRAFFIC VALUES </h6>"
-          close settings customHeader
-        >
-          <div class="stats-row">
-            <div class="stat-item">
-              <h6 class="name">Overall Values</h6>
-              <p class="value">17 567 318</p>
-            </div>
-            <div class="stat-item">
-              <h6 class="name">Montly</h6>
-              <p class="value">55 120</p>
-            </div>
-            <div class="stat-item">
-              <h6 class="name">24h</h6>
-              <p class="value">9 695</p>
-            </div>
-          </div>
-          <b-progress variant="danger"
-            :value="60" :max="100" class="progress-xs" />
-          <p>
-            <small>
-              <span class="circle bg-primary text-white">
-                <i class="la la-angle-down" />
-              </span>
-            </small>
-            <span class="fw-semi-bold">&nbsp;8% lower</span>
-            &nbsp;than last month
-          </p>
-        </Widget>
-      </b-col>
-      <b-col lg="4" xs="12">
-        <Widget
-          title="<h6> RANDOM VALUES </h6>"
-          close settings customHeader
-        >
+      <b-col lg="3" xs="12">
+        <Widget title="<h6> RANDOM VALUES </h6>" close settings customHeader>
           <div class="stats-row">
             <div class="stat-item">
               <h6 class="name fs-sm">Overcome T.</h6>
@@ -159,8 +60,35 @@
               <p class="value">7,211M</p>
             </div>
           </div>
-          <b-progress variant="primary" :value="60"
-            :max="100" class="progress-xs" />
+          <b-progress variant="primary" :value="60" :max="100" class="progress-xs" />
+          <p>
+            <small>
+              <span class="circle bg-primary text-white">
+                <i class="la la-plus" />
+              </span>
+            </small>
+            <span class="fw-semi-bold">&nbsp;8 734 higher</span>
+            &nbsp;than last month
+          </p>
+        </Widget>
+      </b-col>
+      <b-col lg="3" xs="12">
+        <Widget title="<h6> RANDOM VALUES </h6>" close settings customHeader>
+          <div class="stats-row">
+            <div class="stat-item">
+              <h6 class="name fs-sm">Overcome T.</h6>
+              <p class="value">104.85%</p>
+            </div>
+            <div class="stat-item">
+              <h6 class="name fs-sm">Takeoff Angle</h6>
+              <p class="value">14.29&deg;</p>
+            </div>
+            <div class="stat-item">
+              <h6 class="name fs-sm">World Pop.</h6>
+              <p class="value">7,211M</p>
+            </div>
+          </div>
+          <b-progress variant="primary" :value="60" :max="100" class="progress-xs" />
           <p>
             <small>
               <span class="circle bg-primary text-white">
@@ -174,10 +102,102 @@
       </b-col>
     </b-row>
     <b-row>
+      <b-col lg="6">
+        <Widget
+          class="bg-transparent"
+          title="<h5>Map<span class='fw-semi-bold'>&nbsp;Statistics</span></h5>"
+          settings
+          refresh
+          close
+          customHeader
+        >
+          <p>
+            Status:
+            <strong>Live</strong>
+          </p>
+          <p>
+            <span class="circle bg-primary text-white">
+              <i class="la la-map-marker" />
+            </span> &nbsp;
+            146 Countries, 2759 Cities
+          </p>
+          <div class="row progress-stats">
+            <div class="col-md-9 col-12">
+              <h6 class="name">Foreign Visits</h6>
+              <p class="description deemphasize mb-xs">Some Cool Text</p>
+              <b-progress variant="primary" :value="60" :max="100" class="progress-xs" />
+            </div>
+            <div class="col-md-3 col-12 text-center">
+              <span class="status rounded rounded-lg bg-widget">
+                <span>
+                  <AnimatedNumber :value="75" v-bind="animateNumberOptions"></AnimatedNumber>%
+                </span>
+              </span>
+            </div>
+          </div>
+          <div class="row progress-stats">
+            <div class="col-md-9 col-12">
+              <h6 class="name">Local Visits</h6>
+              <p class="description deemphasize mb-xs">P. to C. Conversion</p>
+              <b-progress variant="danger" :value="39" :max="100" class="progress-xs" />
+            </div>
+            <div class="col-md-3 col-12 text-center">
+              <span class="status rounded rounded-lg bg-widget">
+                <span>
+                  <AnimatedNumber :value="84" v-bind="animateNumberOptions"></AnimatedNumber>%
+                </span>
+              </span>
+            </div>
+          </div>
+          <div class="row progress-stats">
+            <div class="col-md-9 col-12">
+              <h6 class="name">Sound Frequencies</h6>
+              <p class="description deemphasize mb-xs">Average Bitrate</p>
+              <b-progress variant="success" :value="80" :max="100" class="progress-xs" />
+            </div>
+            <div class="col-md-3 col-12 text-center">
+              <span class="status rounded rounded-lg bg-widget">
+                <span>
+                  <AnimatedNumber :value="92" v-bind="animateNumberOptions"></AnimatedNumber>%
+                </span>
+              </span>
+            </div>
+          </div>
+          <h6 class="fw-semi-bold mt">Map Distributions</h6>
+          <p>
+            Tracking:
+            <strong>Active</strong>
+          </p>
+          <p>
+            <span class="circle bg-primary text-white">
+              <i class="la la-cog" />
+            </span>
+            &nbsp; 391 elements installed, 84 sets
+          </p>
+          <b-input-group class="mt">
+            <b-form-input placeholder="Search..." />
+            <b-input-group-append>
+              <b-btn variant="default">
+                <i class="la la-search" />
+              </b-btn>
+            </b-input-group-append>
+          </b-input-group>
+        </Widget>
+      </b-col>
+      <b-col lg="6">
+        <Widget class="bg-transparent">
+          <Map />
+        </Widget>
+      </b-col>
+    </b-row>
+
+    <b-row>
       <b-col lg="4" xs="12">
         <Widget
           title="<h6><span class='badge badge-danger'>New</span> Messages</h6>"
-          refresh close customHeader
+          refresh
+          close
+          customHeader
         >
           <div class="widget-body p-0">
             <div class="list-group list-group-lg">
@@ -188,9 +208,9 @@
                 </span>
                 <div>
                   <h6 class="m-0">Chris Gray</h6>
-                  <p class="help-block text-ellipsis m-0">
-                    Hey! What&apos;s up? So many times since we
-                  </p>
+                  <p
+                    class="help-block text-ellipsis m-0"
+                  >Hey! What&apos;s up? So many times since we</p>
                 </div>
               </a>
               <a class="list-group-item" href="#">
@@ -200,9 +220,9 @@
                 </span>
                 <div>
                   <h6 class="m-0">Jamey Brownlow</h6>
-                  <p class="help-block text-ellipsis m-0">
-                    Good news coming tonight. Seems they agreed to proceed
-                  </p>
+                  <p
+                    class="help-block text-ellipsis m-0"
+                  >Good news coming tonight. Seems they agreed to proceed</p>
                 </div>
               </a>
               <a class="list-group-item" href="#">
@@ -233,15 +253,14 @@
         </Widget>
       </b-col>
       <b-col lg="4" xs="12">
-        <Widget
-          title="<h6> Market <span class='fw-semi-bold'>Stats</span></h6>"
-          close customHeader
-        >
+        <Widget title="<h6> Market <span class='fw-semi-bold'>Stats</span></h6>" close customHeader>
           <div class="widget-body">
             <h3>$720 Earned</h3>
             <p class="fs-mini text-muted mb mt-sm">
-              Target <span class="fw-semi-bold">$820</span> day earnings
-              is <span class="fw-semi-bold">96%</span> reached.
+              Target
+              <span class="fw-semi-bold">$820</span> day earnings
+              is
+              <span class="fw-semi-bold">96%</span> reached.
             </p>
           </div>
           <div class="widget-bottom-overflow">
@@ -301,14 +320,17 @@
             </table>
           </div>
           <div class="widget-body mt-xlg chart-overflow-bottom">
-            <area-chart class="area-chart" height="100px" :options="{legend: false, scales: {yAxes: [{display: false}], xAxes: [{display: false}]}}"  :chart-data="dataCollection"></area-chart>
+            <area-chart
+              class="area-chart"
+              height="100px"
+              :options="{legend: false, scales: {yAxes: [{display: false}], xAxes: [{display: false}]}}"
+              :chart-data="dataCollection"
+            ></area-chart>
           </div>
         </Widget>
       </b-col>
       <b-col lg="4" xs="12">
-        <Widget
-          title="<h6>Calendar</h6" bodyClass="p-0"
-          settings close customHeader>
+        <Widget title="<h6>Calendar</h6" bodyClass="p-0" settings close customHeader>
           <Calendar />
           <div class="list-group fs-mini">
             <a href="#" class="list-group-item text-ellipsis">
@@ -327,29 +349,45 @@
 </template>
 
 <script>
-import Vue from 'vue';
-import Widget from '@/components/Widget/Widget';
-import Map from './components/Map/Map';
-import Calendar from './components/Calendar/Calendar';
-import AreaChart from './components/AreaChart/AreaChart';
+import Vue from "vue";
+import Widget from "@/components/Widget/Widget";
+import Map from "./components/Map/Map";
+import Calendar from "./components/Calendar/Calendar";
+import AreaChart from "./components/AreaChart/AreaChart";
 import AnimatedNumber from "animated-number-vue";
 
+//The following are for HightCharts
+import { chartData, liveChart, liveChartInterval } from "./mock";
+import Highcharts from "highcharts";
+import exporting from "highcharts/modules/exporting";
+import exportData from "highcharts/modules/export-data";
+exporting(Highcharts);
+exportData(Highcharts);
+import { Chart } from "highcharts-vue";
+
 export default {
-  name: 'Visits',
+  name: "Visits",
   components: {
-    Widget, Map, Calendar, AreaChart, AnimatedNumber
+    Widget,
+    Map,
+    Calendar,
+    AreaChart,
+    highcharts: Chart,
+    AnimatedNumber
   },
   data() {
     return {
       animateNumberOptions: {
         duration: 2000,
-        easing: 'easeInQuad',
+        easing: "easeInQuad",
         formatValue(value) {
           return value.toFixed(0);
         }
       },
       checkedArr: [false, false, false],
       dataCollection: null,
+      cd: chartData,
+      ld: liveChart
     };
   },
   methods: {
@@ -375,33 +413,61 @@ export default {
           arr[0] = !arr[0];
         }
       }
-      Vue.set(this, 'checkedArr', arr);
+      Vue.set(this, "checkedArr", arr);
     },
-    fillData () {
+    fillData() {
       this.dataCollection = {
-        labels: [this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt()],
+        labels: [
+          this.getRandomInt(),
+          this.getRandomInt(),
+          this.getRandomInt(),
+          this.getRandomInt(),
+          this.getRandomInt(),
+          this.getRandomInt(),
+          this.getRandomInt()
+        ],
         datasets: [
           {
-            label: 'Data One',
-            backgroundColor: '#1870DC',
-            borderColor: 'transparent',
-            data: [this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt()]
-          }, {
-            label: 'Data Two',
-            backgroundColor: '#F45722',
-            borderColor: 'transparent',
-            data: [this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt()]
+            label: "Data One",
+            backgroundColor: "#1870DC",
+            borderColor: "transparent",
+            data: [
+              this.getRandomInt(),
+              this.getRandomInt(),
+              this.getRandomInt(),
+              this.getRandomInt(),
+              this.getRandomInt(),
+              this.getRandomInt(),
+              this.getRandomInt()
+            ]
+          },
+          {
+            label: "Data Two",
+            backgroundColor: "#F45722",
+            borderColor: "transparent",
+            data: [
+              this.getRandomInt(),
+              this.getRandomInt(),
+              this.getRandomInt(),
+              this.getRandomInt(),
+              this.getRandomInt(),
+              this.getRandomInt(),
+              this.getRandomInt()
+            ]
           }
         ]
-      }
+      };
     },
-    getRandomInt () {
-      return Math.floor(Math.random() * (50 - 5 + 1)) + 5
+    getRandomInt() {
+      return Math.floor(Math.random() * (50 - 5 + 1)) + 5;
     }
   },
-  mounted () {
+  mounted() {
     this.fillData();
   },
+  beforeDestroy() {
+    clearInterval(liveChartInterval);
+  }
 };
 </script>
 

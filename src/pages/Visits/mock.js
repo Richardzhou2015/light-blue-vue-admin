@@ -183,60 +183,6 @@ export const chartData = {
                 }
             ]
         },
-        goodpie: {
-            backgroundColor: "transparent",
-            title: {
-                text: '综合指数',
-                style: {
-                    color: colors.textColor
-                }
-            },
-            series: {
-                type: 'pie',
-                clockWise: false,
-                radius: [40, 43],
-                hoverAnimation: false,
-                silent: true,
-                center: ['50%', '50%'],
-                itemStyle: {
-                    normal: {
-                        labelLine: {
-                            show: false,
-                        },
-                    }
-                },
-                data: [{
-                    value: 25,
-                    label: {
-                        normal: {
-                            show: true,
-                            position: "center",
-                            formatter: "{c}%",
-                            fontSize: 22,
-                            fontWeight: 900,
-                            color: "white",
-                        }
-                    },
-                    itemStyle: {
-                        normal: {
-                            color: '#00ff00',
-                            shadowColor: '#82ffff',
-                            borderWidth: 10,
-                            borderColor: '#82ffff',
-                            shadowBlur: 3
-                        }
-                    }
-                }, {
-                    value: 75,
-                    itemStyle: {
-                        normal: {
-                            color: '#82ffff',
-                        }
-                    }
-                }]
-            }
-        },
-
         donut: {
             tooltip: {
                 trigger: 'item',
@@ -478,7 +424,7 @@ export const chartData = {
                 enabled: false
             },
             title: {
-                text: 'Snow depth at Vikjafjellet, Norway',
+                text: '管线资源分布图',
                 style: {
                     color: colors.textColor
                 }
@@ -528,7 +474,7 @@ export const chartData = {
             colors: [colors.green, colors.blue, colors.red],
 
             series: [{
-                name: "Winter 2014-2015",
+                name: "光缆 2014-2015",
                 data: [
                     [Date.UTC(1970, 10, 25), 0],
                     [Date.UTC(1970, 11, 6), 0.25],
@@ -559,7 +505,7 @@ export const chartData = {
                     [Date.UTC(1971, 6, 4), 0]
                 ]
             }, {
-                name: "Winter 2015-2016",
+                name: "铜缆 2015-2016",
                 type: 'areaspline',
                 data: [
                     [Date.UTC(1970, 10, 9), 0],
@@ -587,7 +533,7 @@ export const chartData = {
                     [Date.UTC(1971, 5, 7), 0]
                 ]
             }, {
-                name: "Winter 2016-2017",
+                name: "管道 2016-2017",
                 type: 'areaspline',
                 data: [
                     [Date.UTC(1970, 9, 15), 0],
@@ -647,7 +593,51 @@ export const chartData = {
                 ]
             }]
         },
-    }
+        piedata: {
+            chart: {
+                height: 200,
+                backgroundColor: 'transparent'
+            },
+            exporting: {
+                enabled: false
+            },
+            title: false,
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                        style: {
+                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                        },
+                        connectorColor: 'silver'
+                    }
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: '网络设备占比',
+                data: [
+                    ['传输设备', 45.0],
+                    ['交换设备', 26.8],
+                    {
+                        name: '数据设备',
+                        y: 12.8,
+                        sliced: true,
+                        selected: true
+                    },
+                    ['连接设备', 8.5],
+                    ['动环设备', 6.2],
+                    ['其他', 0.7]
+                ]
+            }]
+        },
+    },
 };
 
 export let liveChartInterval = null;

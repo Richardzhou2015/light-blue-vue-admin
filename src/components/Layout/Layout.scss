@@ -1,35 +1,34 @@
 @import '../../styles/app.scss';
-
 .root {
-  height: 100%;
-  @include media-breakpoint-up('md') {
-    margin-left: $sidebar-width;
-
-    @media print {
-      margin-left: 0;
+    height: 100%;
+    width: 100%;
+    @include media-breakpoint-up('md') {
+        //  margin-left: $sidebar-width;
+        @media print {
+            margin-left: 0;
+        }
     }
-  }
 }
 
 .content {
-  position: relative;
-  flex-grow: 1;
-  // 1rem for footer height
-  padding: $content-padding $content-padding ($content-padding + 1rem);
-
-  @media (max-width: breakpoint-max(sm)) {
-    padding: 20px 15px 40px;
-  }
-
-  // hammers disallows text selection, allowing it for large screens
-  @media (min-width: breakpoint-min(sm)) {
-    user-select: auto !important;
-  }
+    position: relative;
+    flex-grow: 0;
+    // 1rem for footer height
+    //   padding: $content-padding $content-padding ($content-padding + 1rem);
+    padding: 1px 10px 1px 10px;
+    @media (max-width: breakpoint-max(sm)) {
+        padding: 20px 15px 40px;
+    }
+    // hammers disallows text selection, allowing it for large screens
+    @media (min-width: breakpoint-min(sm)) {
+        user-select: auto !important;
+    }
 }
 
 .contentFooter {
-  position: absolute;
-  bottom: 15px;
-  color: $text-muted;
-  padding: 0 $content-padding;
+    position: absolute;
+    bottom: 15px;
+    color: $text-muted;
+    padding: 0 $content-padding;
+    text-align: right;
 }
